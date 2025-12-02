@@ -35,11 +35,33 @@ Apply the migration files of the created app to the database
 Execute Django admin using localhost and create details for 10 entries
 
 ## PROGRAM
+```python
+model.py
+from django.db import models
+from django.contrib import admin
 
+class Movie(models.Model):
+    title = models.CharField(max_length=50)
+    director = models.CharField(max_length=50)
+    release_date = models.DateField()
+    genre = models.CharField(max_length=30)
+    rating = models.FloatField(default=0.0)
+
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ('title', 'director', 'release_date', 'genre', 'rating')
+
+admin.py
+from django.contrib import admin
+from .models import Movie, MovieAdmin
+
+admin.site.register(Movie, MovieAdmin)
+
+```
 
 
 ## OUTPUT
 
+<img width="1857" height="994" alt="image" src="https://github.com/user-attachments/assets/5d9af778-7b8e-4434-95aa-9676d519dc42" />
 
 
 ## RESULT
